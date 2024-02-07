@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+
 import com.example.schoolstuff.R;
 
 import java.util.LinkedList;
@@ -40,10 +41,7 @@ public class SpinnerAdapter extends ArrayAdapter {
     }
 
     public View getSpinnerView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_spinner_item, parent, false);
-        TextView view = convertView.findViewById(R.id.spinnerTextView);
-        view.setText((CharSequence) getItem(position));
-
+        convertView = LayoutInflater.from(getContext()).inflate(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, parent, false);
         return convertView;
     }
 }
