@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity"
->
+    tools:context=".DataEdit">
     <LinearLayout
         android:id="@+id/topContainer"
         android:layout_width="match_parent"
@@ -14,34 +13,68 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/allBtn"
+
+        <android.widget.Button
+            android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:textSize="16sp"
-            android:text="Semua Data"
             android:background="@drawable/bg_button_accept"
+            android:padding="8dp"
+            android:text="Semua Data"
             android:textColor="@color/white"
-            android:padding="8dp"/>
+            android:textSize="16sp" />
+        <android.widget.Button
+            android:id="@+id/viewBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/bg_button_accept"
+            android:padding="8dp"
+            android:text="Display Data"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/loading"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topContainer"/>
+
     <LinearLayout
+        android:id="@+id/dataDisplay"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
-        android:padding="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topContainer">
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topContainer">
+        <TextView
+            android:id="@+id/idDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mengedit Akun 123123"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="24dp"/>
         <EditText
             android:id="@+id/nikInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_inputfield"
-            android:hint="NIK"
+            android:hint="Ubah NIK"
             android:padding="12dp"
             android:textColor="@color/white"
             android:textSize="16sp" />
@@ -53,7 +86,7 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_inputfield"
             android:gravity="start"
-            android:hint="Alamat"
+            android:hint="Ubah alamat"
             android:padding="12dp"
             android:textColor="@color/white"
             android:textSize="16sp" />
@@ -64,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_inputfield"
-            android:hint="Umur"
+            android:hint="Ubah umur"
             android:inputType="number"
             android:padding="12dp"
             android:textColor="@color/white"
@@ -81,7 +114,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jenis Kelamin:"
+            android:text="Ubah Jenis Kelamin:"
             android:textColor="@color/black"/>
         <RadioGroup
             android:id="@+id/kelaminInput"
@@ -112,79 +145,23 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="24dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/submitBtn"
-            android:visibility="visible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SUBMIT"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:padding="8dp"
-            android:textStyle="bold"
-            android:background="@drawable/bg_button_accept"/>
-        <ProgressBar
-            android:id="@+id/loading"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/errorContainer"
+        android:id="@+id/updateContainer"
         android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black_semitrans"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:padding="24dp">
-        <LinearLayout
-            android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center">
+        <android.widget.Button
+            android:id="@+id/updateBtn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/red"
-            android:padding="12dp"
-            android:orientation="vertical"
-            android:gravity="center">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:text="Something went wrong"
-                android:textAlignment="center"
-                android:textStyle="bold"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:text=":("
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
-            <Button
-                android:id="@+id/errorConfirmBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:background="@drawable/bg_inputfield"
-                android:textStyle="bold"
-                android:text="OK"/>
-        </LinearLayout>
+            android:padding="8dp"
+            android:background="@drawable/bg_button_accept"
+            android:text="UPDATE"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
